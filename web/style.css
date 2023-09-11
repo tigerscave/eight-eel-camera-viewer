@@ -1,0 +1,250 @@
+@charset'utf-8';
+
+html {
+  transition: transform 0.8s ease-in-out;
+}
+
+h1 {
+  margin: 0;
+  color: white;
+  background-color: #144998;
+}
+
+body {
+  transform-origin: top left;
+  transition: transform 0.8s ease-in-out;
+  margin: 0;
+  color: white;
+  background-color: #144998;
+  transform: scale(var(--scale));
+}
+
+/*各ラベルの表示*/
+.website-zoom-label {
+  display: flex;
+  transform-origin: top left;
+}
+
+/*リロード関係*/
+.reload-btn {
+  margin-top: 1rem;
+  width: 3rem;
+  height: 2rem;
+  margin-left: 1rem;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.reload-text {
+  margin-top: 1.4rem;
+  margin-left: 1rem;
+  font-size: 0.8rem;
+  opacity: 0;
+  transition: opacity 300ms;
+}
+
+.appear {
+  opacity: 1;
+}
+
+/*すっきりモード 切り替え*/
+.change-ui-on-btn,
+.change-ui-off-btn {
+  margin-top: 1rem;
+  width: 4rem;
+  height: 2rem;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.change-ui-off-btn {
+  margin-left: 1rem;
+}
+
+.ui-hidden {
+  display: none;
+  margin-top: 0;
+}
+
+/*拡大・縮小*/
+.resize-btn {
+  margin-top: 1.3rem;
+  width: 2.5rem;
+  height: 1.5rem;
+  cursor: pointer;
+  font-size: 1.1rem;
+}
+
+h4 {
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+/*IPアドレス*/
+.ip-address-label {
+  display: flex;
+}
+
+.edit-btn {
+  background-color: #d9e5ff;
+}
+
+.save-btn {
+  background-color: #eee;
+}
+
+.edit-btn,.save-btn {
+  width: 4rem;
+  height: 2rem;
+  border: 1px solid;
+  cursor: pointer;
+  margin-top: 1rem;
+  font-size: 1rem;
+  margin-left: 0.5rem;
+}
+
+input {
+  height: 2rem;
+  margin-top: 0.8rem;
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+/*ラベルの表示*/
+.viewer-angle-label {
+  display: flex;
+}
+
+.zoom-btn {
+  margin-top: 1.3rem;
+  width: 2.5rem;
+  height: 1.5rem;
+  cursor: pointer;
+}
+
+/*プリセット*/
+.preset-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.viewer-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.preset-btn {
+  font-size: 0.9rem;
+  width: 3.5rem;
+  height: 2.2rem;
+  cursor: pointer;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  background: white;
+  color: black;
+  border-radius: 6%;
+  text-decoration: none;
+  border: outset 0.01px black;
+}
+
+/*視点移動*/
+.zoom-btn,
+.ifr-resize-btn {
+  width: 2.1rem;
+  height: 1.6rem;
+  cursor: pointer;
+  justify-content: center;
+  align-items: center;
+  background: white;
+  color: black;
+  border-radius: 6%;
+  text-decoration: none;
+  border: outset 0.01px black;
+}
+
+/*視点移動*/
+.arrow-btn {
+  width: 2.1rem;
+  height: 1.6rem;
+  cursor: pointer;
+}
+
+.none {
+  border: none;
+  background-color: inherit;
+  pointer-events: none;
+  color: #144998;
+}
+
+/*オンライン、オフライン*/
+.ping-panel {
+  display: flex;
+  margin-bottom: 0.2rem;
+}
+
+.check-online {
+  width: 16px;
+  height: 16px;
+  background-color: lightgray;
+  border-radius: 50%;
+  border: solid 1px black;
+  margin-right: 0.3rem;
+}
+
+/*ラベルの表示*/
+.iframe-label {
+  display: block;
+  margin: 0;
+}
+
+p {
+  margin-top: 0.1rem;
+  margin-bottom: 0.5rem;
+  margin-left: 0.5rem;
+}
+
+/*カメラビューワー*/
+iframe {
+  margin-left: 1rem;
+}
+
+/*サイドボタン*/
+.ifr-resize-btn {
+  margin-left: 5px;
+  margin-bottom: 35px;
+  cursor: pointer;
+  background: white;
+  color: #000000;
+  border: none;
+  align-self: flex-end;
+}
+
+.side-btn-container {
+  margin: 0;
+  display: flex;
+  flex-flow: column;
+}
+
+.iframe-label {
+  margin: 0;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.iframe-side-btn {
+  text-decoration: none;
+  margin: 1px;
+  border-radius: 6%;
+  font-size: 1rem;
+  padding: 8px 1px;
+  background: white;
+  color: #000000;
+  line-height: 0.1em;
+  width: 1.5rem;
+  height: 1rem;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 0.5rem;
+}
