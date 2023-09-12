@@ -26,7 +26,7 @@
     </div>
     <div class="ip-address-label">
       <h4 class="sukkiri">IP アドレス</h4>
-      <input type="text" id="ip-address-input" class="sukkiri" disabled={!isEditting}></input>
+      <input type="text" id="ip-address-input" class="sukkiri"></input>
       <button class="save-btn sukkiri" id="connect-ip-address-btn">保存</button>
     </div>
     <div class="viewer-angle-label">
@@ -59,10 +59,10 @@
       <button class="sukkiri ifr-resize-btn" id="small-frame-size">②</button>
     </div>
     <div class="ping-panel">
-      <div class="check-online"></div>
-      <span id="network-message">オフライン</span>
+      <div class="check-online" id="check-online"></div>
+      <span id="network-message">オフライン </span>
       <div class="ping-panel">
-        （<span>ping</span> <span id="sequence">000</span> ）
+        <span>( 通信時間：</span> <span id="ping-value"></span>
       </div>
     </div>
     <div class="iframe-label">
@@ -81,12 +81,7 @@
         src="http://{ipAddress}/ImageViewer?Mode=Motion&Resolution=640x360&Quality=Standard&Interval=10">
       </iframe>
     </div>
-    <button id="ping-start-btn">ping開始</button>
-    <button id="ping-stop-btn">ping停止</button>
-    <span id="check-online-text"></span>
-    <span id="check-online"></span>
   </div>
-  <pre id="ping-value"></pre>
 </body>
 <script src="main.js"></script>
 <script src="ping.js"></script>
