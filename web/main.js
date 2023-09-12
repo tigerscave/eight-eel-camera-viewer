@@ -67,61 +67,6 @@ function loadUIState() {
 }
 loadUIState();
 
-//IPアドレス関係
-const ipAddressInput = document.getElementById("ip-address-input")
-const connectIpAddressBtn = document.getElementById("connect-ip-address-btn")
-const cameraViewer = document.getElementById("camera-viewer")
-const networkMessage = document.getElementById("network-message")
-const pingResultValue = document.getElementById("ping-value")
-const viewerModeText = document.getElementById("network-message")
-const onlineStatusIndicator = document.getElementById("check-online")
-
-let pingRunning = false;
-let pingResultElement;
-
-connectIpAddressBtn.addEventListener('click', async () => {
-  //pythonで疎通確認
-  pingRunning = true;
-  for (let i = 0; i < i + 1; i++) {
-    const host = ipAddressInput.value;
-    const startTime = new Date().getTime(); // ping開始時間
-    const result = await eel.ping_host(host)(); // ping_host関数を非同期で呼び出す
-    const endTime = new Date().getTime(); // ping終了時間
-    const pingTime = endTime - startTime; // ping実行時間
-    if (!pingResultElement) {
-      pingResultElement = document.createElement("span");
-      pingResultElement.classList.add("new-span-class");
-      pingResultValue.parentNode.appendChild(pingResultElement);
-    }
-    //pingの値を上書き
-    pingResultElement.textContent = `${pingTime}ミリ秒 )`;
-    viewerModeText.innerText = "オンライン "
-    onlineStatusIndicator.style.backgroundColor = "lightgreen"
-
-    await new Promise(resolve => setTimeout(resolve, 1000));
-  }
-  //JavaScriptでビューワー読み込み
-  if (connectIpAddressBtn.innerText === "編集") {
-    connectIpAddressBtn.innerText = "保存";
-    ipAddressInput.disabled = false; //編集モード中は、IPアドレス入力可能
-    connectIpAddressBtn.style.background = "#EEEEEE";
-  } else if (connectIpAddressBtn.innerText === "保存") {
-    connectIpAddressBtn.innerText = "編集";
-    //入力されたIPアドレスの値を、カメラビューワーに反映させる。
-    cameraViewer.src = "http://" + ipAddressInput.value + "/ImageViewer?Mode=Motion&Resolution=640x360&Quality=Standard&Interval=10";
-    ipAddressInput.disabled = true;
-    localStorage.setItem('ip-address', ipAddressInput.value);
-    connectIpAddressBtn.style.background = "#D9E5FF";
-  }
-});
-
-//リロード時に、IPアドレスの値が入力されていたら、カメラビューワーに反映させる。
-if (localStorage.getItem('ip-address') !== "") {
-  ipAddressInput.value = localStorage.getItem('ip-address')
-  cameraViewer.src = "http://" + ipAddressInput.value + "/ImageViewer?Mode=Motion&Resolution=640x360&Quality=Standard&Interval=10";
-
-}
-
 //ビューワーの拡大縮小ボタン
 const zoomInCameraBtn = document.getElementById("zoom-in-camera-btn")
 const zoomOutCameraBtn = document.getElementById("zoom-out-camera-btn")
