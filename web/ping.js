@@ -2,20 +2,23 @@
 const ipAddressInput = document.getElementById("ip-address-input")
 const connectIpAddressBtn = document.getElementById("connect-ip-address-btn")
 const cameraViewer = document.getElementById("camera-viewer")
-const networkMessage = document.getElementById("network-message")
 const pingResultValue = document.getElementById("ping-value")
 const viewerModeText = document.getElementById("network-message")
 const onlineStatusIndicator = document.getElementById("check-online")
 
-const host = ipAddressInput.value;//pingが通信する相手は、入力されたIPアドレス
-
 connectIpAddressBtn.addEventListener('click', async () => {
+  const host = ipAddressInput.value;//pingが通信する相手は、入力されたIPアドレス
   try {
     const res = await eel.ping_host(host);
-
-    pingResultValue.textContent = `Ping Result: ${res}`
-    viewerModeText.innerText = "オンライン "
-    onlineStatusIndicator.style.backgroundColor = "lightgreen"
+   if (res === "Ping failed") {
+     pingResultValue.textContent = "通信データなし";
+     viewerModeText.innerText = "オフライン ";
+     onlineStatusIndicator.style.backgroundColor = "lightgray";
+   } else {
+     pingResultValue.textContent = `Ping Result: ${res}`;
+     viewerModeText.innerText = "オンライン ";
+     onlineStatusIndicator.style.backgroundColor = "lightgreen";
+   }
   } catch (error) {
     pingResultValue.textContent = "通信データなし"
     viewerModeText.innerText = "オフライン "
@@ -37,17 +40,16 @@ connectIpAddressBtn.addEventListener('click', async () => {
   }
 });
 
-//リロード時に、IPアドレスの値が入力されていたら、カメラビューワーに反映させる。
+//ページを読み込んだ際の挙動
 window.addEventListener('load', async () => {
-  // localStorageからIPアドレスを取得
+  // localStorageからIPアドレスを取得し、カメラビューワーに反映
   const storedIpAddress = localStorage.getItem('ip-address');
+  const host = storedIpAddress;//ローカルストレージの値をhostに代入
   if (storedIpAddress) {
-    // IPアドレスの入力フィールドに値を設定
     ipAddressInput.value = storedIpAddress;
-    // カメラビューワーに反映
     cameraViewer.src = "http://" + storedIpAddress + "/ImageViewer?Mode=Motion&Resolution=640x360&Quality=Standard&Interval=10";
   }
-  const res = await fetch(`https://ping-tool.example.com/ping?host=${host}`)
+  const res = await eel.ping_host(host);
   if (!res.ok) {
     throw new Error("HTTP error:" + res.status);
   }
