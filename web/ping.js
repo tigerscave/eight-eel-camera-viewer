@@ -6,25 +6,24 @@ const pingResultValue = document.getElementById("ping-value")
 const viewerModeText = document.getElementById("network-message")
 const onlineStatusIndicator = document.getElementById("check-online")
 
-connectIpAddressBtn.addEventListener('click', async () => {
+eel.expose(update_ping_result);
+function update_ping_result(result) {
+  const match = result.match(/time=(\d+\.\d+)\s*ms/);
+  const pingTime = match[1]
+  pingResultValue.textContent = `（通信時間：${pingTime}ミリ秒）`;
+}
+
+connectIpAddressBtn.addEventListener('click', () => {
   const host = ipAddressInput.value;//pingが通信する相手は、入力されたIPアドレス
   try {
-    const res = await eel.ping_host(host);
-   if (res === "Ping failed") {
-     pingResultValue.textContent = "通信データなし";
-     viewerModeText.innerText = "オフライン ";
-     onlineStatusIndicator.style.backgroundColor = "lightgray";
-   } else {
-     pingResultValue.textContent = `Ping Result: ${res}`;
-     viewerModeText.innerText = "オンライン ";
-     onlineStatusIndicator.style.backgroundColor = "lightgreen";
-   }
+    const res = eel.ping_host(host);
+    viewerModeText.innerText = "オンライン ";
+    onlineStatusIndicator.style.backgroundColor = "lightgreen";
   } catch (error) {
-    pingResultValue.textContent = "通信データなし"
+    pingResultValue.textContent = "(通信データなし)"
     viewerModeText.innerText = "オフライン "
     onlineStatusIndicator.style.backgroundColor = "lightgray"
   }
-  await new Promise(resolve => setTimeout(resolve, 1000))
 
   if (connectIpAddressBtn.innerText === "編集") {
     connectIpAddressBtn.innerText = "保存";
@@ -41,7 +40,7 @@ connectIpAddressBtn.addEventListener('click', async () => {
 });
 
 //ページを読み込んだ際の挙動
-window.addEventListener('load', async () => {
+window.addEventListener('load', () => {
   // localStorageからIPアドレスを取得し、カメラビューワーに反映
   const storedIpAddress = localStorage.getItem('ip-address');
   const host = storedIpAddress;//ローカルストレージの値をhostに代入
@@ -49,10 +48,10 @@ window.addEventListener('load', async () => {
     ipAddressInput.value = storedIpAddress;
     cameraViewer.src = "http://" + storedIpAddress + "/ImageViewer?Mode=Motion&Resolution=640x360&Quality=Standard&Interval=10";
   }
-  const res = await eel.ping_host(host);
+  const res = eel.ping_host(host);
   if (!res.ok) {
     throw new Error("HTTP error:" + res.status);
   }
-  const data = await res.text();
+  const data = res.text();
   return data;
 });

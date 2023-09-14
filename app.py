@@ -4,10 +4,14 @@ import time
 
 eel.init("web")
 
+exit_flag = False
+
 
 @eel.expose
 def ping_host(host):
-    while True:
+    global exit_flag
+
+    while not exit_flag:
         try:
             res = subprocess.run(
                 ["ping", host, "-c", "1", "-W", "3000"],
@@ -16,7 +20,9 @@ def ping_host(host):
             )
             response = res.stdout
             print("test: **** ", response)
+            eel.update_ping_result(response)
         except subprocess.CalledProcessError as e:
+            exit_flag = True
             return "Ping failed"
 
         time.sleep(1)
