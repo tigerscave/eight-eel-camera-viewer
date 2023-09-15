@@ -34,7 +34,6 @@ zoomOutScreenBtn.addEventListener('click', () => {
   screenZoomLevel.innerText = zoomLevel.toFixed(1);
 });
 
-
 //すっきりモードON、OFFボタン
 const sukkiriOn = document.getElementById("change-ui-on-btn")
 const sukkiriOff = document.getElementById("change-ui-off-btn")
