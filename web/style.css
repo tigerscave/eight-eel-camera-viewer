@@ -183,7 +183,7 @@ input {
   margin-bottom: 0.2rem;
 }
 
-.check-online {
+.online-status-indicatator {
   width: 16px;
   height: 16px;
   background-color: lightgray;
