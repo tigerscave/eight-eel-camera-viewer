@@ -15,36 +15,32 @@ function importIpAddressMode() {
 
 //オフライン⇔オンラインイベント関数のまとめ
 function displayOfflineEvent() {
-  onOfflineText.innerText = "オフライン "
+  onOfflineText.innerText = "オフライン （通信データなし）"
   onlineStatusIndicator.style.backgroundColor = "lightgray"
-  pingResultValue.textContent = "(通信データなし)";
 };
 
 function displayOnlineEvent() {
-  onOfflineText.innerText = "オンライン";
-  onlineStatusIndicator.style.backgroundColor = "lightgreen";
 }
 
 //IPアドレス関係
 const ipAddressInput = document.getElementById("ip-address-input")
 const connectIpAddressBtn = document.getElementById("connect-ip-address-btn")
 const cameraViewer = document.getElementById("camera-viewer")
-const pingResultValue = document.getElementById("ping-result-value")
 const onlineStatusIndicator = document.getElementById("online-status-indicatator")
 const onOfflineText = document.getElementById("on-offline-text")
 
 eel.expose(update_ping_result);
-function update_ping_result(result) {
-  const match = result.match(/time=(\d+\.\d+)\s*ms/);
+function update_ping_result(response_time) {
+  const match = response_time.match(/time=(\d+\.\d+)\s*ms/);
   const pingTime = match[1]
-  pingResultValue.textContent = `（通信時間：${pingTime}ミリ秒）`;
+  onOfflineText.textContent = `オンライン（通信時間：${pingTime}ミリ秒）`;
+  onlineStatusIndicator.style.backgroundColor = "lightgreen";
 }
 
 connectIpAddressBtn.addEventListener('click', async () => {
   const host = ipAddressInput.value;//pingが通信する相手は、入力されたIPアドレス
   try {
     const res = eel.ping_host(host);
-    displayOnlineEvent();
   } catch (error) {
     displayOfflineEvent();
   }
@@ -72,9 +68,7 @@ window.addEventListener('load', async () => {
         const res = await eel.ping_host(host);
         if (res === "Ping failed") {
           displayOfflineEvent();
-        } else {
-          displayOnlineEvent();
-        }
+        } 
       } catch (error) {
         displayOfflineEvent();
       }

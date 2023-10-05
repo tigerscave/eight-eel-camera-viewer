@@ -1,22 +1,26 @@
 import eel
 import time
-from ping3 import ping, EXCEPTIONS
+from ping3 import ping
 
 eel.init("web")
 
 @eel.expose
 def ping_host(host):
     while True:
+        response_time = ping(host)
         try:
-            result = ping(host)
-            if result is not None:
-                response = f"time={result} ms"
-                print(response)
-                eel.update_ping_result(response)
+            if response_time is not None and response_time is not False:
+                result = f"time={response_time} ms"
+                print(f"IPアドレス:{host}は応答があります。応答時間{result}")
+                eel.update_ping_result(result)
             else:
-                eel.update_ping_result("Request timed out.")
-        except EXCEPTIONS.TimeoutException:
-            pass
+                result = "Request timed out."
+                print(f"{host}は応答がありません")
+                eel.update_ping_result(result)
+        except OSError as e:
+            result = "Request timed out."
+            print(f"{host}は応答がありません: {str(e)}")
+            eel.update_ping_result(result)
 
         time.sleep(1)
 
