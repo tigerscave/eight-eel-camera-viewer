@@ -234,3 +234,15 @@ leftSideBtn.addEventListener('click', () => {
 rightSideBtn.addEventListener('click', () => {
   cameraViewer.src = "http://" + ipAddressInput.value + "/cgi-bin/camctrl?pan=1&tilt=0&Language=0";
 });
+
+// JS側では動かさない。Pythonから取ってきた引数で動く。
+eel.expose(changeOnlineStatus);
+function changeOnlineStatus(value) {
+  viewerModeText.innerText = value;
+}
+
+// IPアドレスをPythonに渡す用の関数
+eel.expose(ipAddressStatus);
+function ipAddressStatus() {
+  return ipAddressInput.value;
+}
