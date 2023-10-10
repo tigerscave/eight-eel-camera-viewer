@@ -13,14 +13,11 @@ function importIpAddressMode() {
   connectIpAddressBtn.style.background = "#D9E5FF";
 }
 
-//オフライン⇔オンラインイベント関数のまとめ
+//オフラインイベント関数のまとめ
 function displayOfflineEvent() {
   onOfflineText.innerText = "オフライン （通信データなし）"
   onlineStatusIndicator.style.backgroundColor = "lightgray"
 };
-
-function displayOnlineEvent() {
-}
 
 //IPアドレス関係
 const ipAddressInput = document.getElementById("ip-address-input")
@@ -32,15 +29,20 @@ const onOfflineText = document.getElementById("on-offline-text")
 eel.expose(update_ping_result);
 function update_ping_result(response_time) {
   const match = response_time.match(/time=(\d+\.\d+)\s*ms/);
-  const pingTime = match[1]
-  onOfflineText.textContent = `オンライン（通信時間：${pingTime}ミリ秒）`;
-  onlineStatusIndicator.style.backgroundColor = "lightgreen";
+  if (match && match.length >= 2) {
+    response_time = match[1];
+    onOfflineText.textContent = `オンライン（通信時間:${response_time}ミリ秒`
+    onlineStatusIndicator.style.backgroundColor = "lightgreen";
+  } else {
+    onOfflineText.textContent = "オフライン（通信データなし）"
+    onlineStatusIndicator.style.backgroundColor = "lightgray"
+  }
 }
 
 connectIpAddressBtn.addEventListener('click', async () => {
   const host = ipAddressInput.value;//pingが通信する相手は、入力されたIPアドレス
   try {
-    const res = eel.ping_host(host);
+    const res = await eel.ping_host(host);
   } catch (error) {
     displayOfflineEvent();
   }
@@ -49,15 +51,14 @@ connectIpAddressBtn.addEventListener('click', async () => {
   } else if (connectIpAddressBtn.innerText === "保存") {
     importIpAddressMode();
   }
-  await eel.restart_ping_host(newHost)();
 });
 
 //ページを読み込んだ際の挙動
 window.addEventListener('load', async () => {
-  importStoredIpAddress();
-  const host = storedIpAddress;//ローカルストレージの値をhostに代入
+  const storedIpAddress = localStorage.getItem('ip-address');
+  const host = storedIpAddress
   if (storedIpAddress) {
-    ipAddressInput.value = storedIpAddress;
+    update_ping_result(`オンライン（通信時間：${response_time}ミリ秒）`)
     cameraViewer.src = "http://" + storedIpAddress + "/ImageViewer?Mode=Motion&Resolution=640x360&Quality=Standard&Interval=10";
   }
   let pingLoopActive = true;
@@ -66,9 +67,9 @@ window.addEventListener('load', async () => {
     while (pingLoopActive) {
       try {
         const res = await eel.ping_host(host);
-        if (res === "Ping failed") {
+        if (res === "オフライン(通信データなし）") {
           displayOfflineEvent();
-        } 
+        }
       } catch (error) {
         displayOfflineEvent();
       }
@@ -77,3 +78,14 @@ window.addEventListener('load', async () => {
   }
   pingLoop();
 });
+
+eel.expose(changeOnlineStatus);
+function changeOnlineStatus(value) {
+  onOfflineText.innerText = value;
+}
+
+eel.expose(ipAddressStatus);
+function ipAddressStatus() {
+  return ipAddressInput.value;
+  return storedIpAddress;
+}
