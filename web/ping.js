@@ -34,8 +34,7 @@ function update_ping_result(response_time) {
     onOfflineText.textContent = `オンライン（通信時間:${response_time}ミリ秒`
     onlineStatusIndicator.style.backgroundColor = "lightgreen";
   } else {
-    onOfflineText.textContent = "オフライン（通信データなし）"
-    onlineStatusIndicator.style.backgroundColor = "lightgray"
+    displayOfflineEvent()
   }
 }
 
@@ -58,7 +57,7 @@ window.addEventListener('load', async () => {
   const storedIpAddress = localStorage.getItem('ip-address');
   const host = storedIpAddress
   if (storedIpAddress) {
-    update_ping_result(`オンライン（通信時間：${response_time}ミリ秒）`)
+    ipAddressInput.value = storedIpAddress
     cameraViewer.src = "http://" + storedIpAddress + "/ImageViewer?Mode=Motion&Resolution=640x360&Quality=Standard&Interval=10";
   }
   let pingLoopActive = true;
@@ -87,5 +86,4 @@ function changeOnlineStatus(value) {
 eel.expose(ipAddressStatus);
 function ipAddressStatus() {
   return ipAddressInput.value;
-  return storedIpAddress;
 }
