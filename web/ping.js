@@ -19,7 +19,7 @@ function displayOfflineEvent() {
   onlineStatusIndicator.style.backgroundColor = "lightgray"
 };
 
-//IPアドレス関係
+//IPアドレス関係の関数定義一覧
 const ipAddressInput = document.getElementById("ip-address-input")
 const connectIpAddressBtn = document.getElementById("connect-ip-address-btn")
 const cameraViewer = document.getElementById("camera-viewer")
@@ -60,6 +60,8 @@ window.addEventListener('load', async () => {
     ipAddressInput.value = storedIpAddress
     cameraViewer.src = "http://" + storedIpAddress + "/ImageViewer?Mode=Motion&Resolution=640x360&Quality=Standard&Interval=10";
   }
+
+  //localStorageに保存されたIPアドレスの値に対してping疎通を行う。
   let pingLoopActive = true;
 
   async function pingLoop() {
@@ -72,9 +74,10 @@ window.addEventListener('load', async () => {
       } catch (error) {
         displayOfflineEvent();
       }
-      await new Promise(relolve => setTimeout(relolve, 1000));
+      await new Promise(relolve => setTimeout(relolve, 1000)); //1秒おきにping行う
     }
   }
+  //pingLoopActive = falseが入ったら、pingLoop()を抜けてしまう。IPアドレスの疎通が取れなくても、ping疎通を続ける必要があるため記述
   pingLoop();
 });
 
