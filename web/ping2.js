@@ -31,7 +31,7 @@ function update_ping_result2(response_time2) {
   const match2 = response_time2.match(/time=(\d+\.\d+)\s*ms/);
   if (match2 && match2.length >= 2) {
     response_time2 = match2[1];
-    onOfflineText2.textContent = `オンライン（通信時間:${response_time2}ミリ秒`
+    onOfflineText2.textContent = `オンライン（通信時間:${response_time2}ミリ秒）`
     onlineStatusIndicator2.style.backgroundColor = "lightgreen";
   } else {
     displayOfflineEvent2()
