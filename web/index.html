@@ -24,9 +24,10 @@
       <button class="change-ui-off-btn" id="change-ui-off-btn">OFF</button>
       <span class="reload-text" id="reload-text">更新します</span>
     </div>
+    <!--1つ目のネットワークカメラ-->
     <div class="ip-address-label">
       <h4 class="sukkiri">IP アドレス</h4>
-      <input type="text" id="ip-address-input" class="sukkiri" disabled={!isEditting}></input>
+      <input type="text" id="ip-address-input" class="sukkiri"></input>
       <button class="save-btn sukkiri" id="connect-ip-address-btn">保存</button>
     </div>
     <div class="viewer-angle-label">
@@ -58,11 +59,11 @@
       <button class="ifr-resize-btn sukkiri" id="wide-frame-size">①</button>
       <button class="sukkiri ifr-resize-btn" id="small-frame-size">②</button>
     </div>
-    <div class="ping-panel">
-      <div class="check-online"></div>
-      <span id="network-message">オフライン</span>
+    <div class="ping-panel sukkiri">
+      <div class="online-status-indicatator sukkiri" id="online-status-indicatator"></div>
+      <span class="sukkiri" id="on-offline-text">ここに値が表示されます</span>
       <div class="ping-panel">
-        （<span>ping</span> <span id="sequence">000</span> ）
+        <span id="ping-result-value"></span>
       </div>
     </div>
     <div class="iframe-label">
@@ -81,14 +82,130 @@
         src="http://{ipAddress}/ImageViewer?Mode=Motion&Resolution=640x360&Quality=Standard&Interval=10">
       </iframe>
     </div>
-    <button id="ping-start-btn">ping開始</button>
-    <button id="ping-stop-btn">ping停止</button>
-    <span id="check-online-text"></span>
-    <span id="check-online"></span>
   </div>
-  <pre id="ping-value"></pre>
+  <!--2つ目のネットワークカメラ-->
+  <div class="ip-address-label">
+    <h4 class="sukkiri">IP アドレス</h4>
+    <input type="text" id="ip-address-input2" class="sukkiri"></input>
+    <button class="save-btn sukkiri" id="connect-ip-address-btn2">保存</button>
+  </div>
+  <div class="viewer-angle-label">
+    <h4 class="sukkiri">拡大・縮小</h4>
+    <button class="zoom-btn sukkiri" id="zoom-in-camera-btn2">+</button>
+    <button class="zoom-btn sukkiri" id="zoom-out-camera-btn2">-</button>
+    <h4 class="sukkiri">プリセット</h4>
+    <div class="preset-container">
+      <button id="save-angle12" class="sukkiri">①保存</button>
+      <button id="save-angle22" class="sukkiri">②保存</button>
+      <button id="save-angle32" class="sukkiri">③保存</button>
+      <button id="move-angle12" class="sukkiri">①移動</button>
+      <button id="move-angle22" class="sukkiri">②移動</button>
+      <button id="move-angle32" class="sukkiri">③移動</button>
+    </div>
+    <h4 class="sukkiri">視点移動</h4>
+    <div class="viewer-container">
+      <button class="arrow-btn none sukkiri"></button>
+      <button class="arrow-btn sukkiri" id="up-btn2">↑</button>
+      <button class="arrow-btn none sukkiri"></button>
+      <button class="arrow-btn sukkiri" id="left-btn2">←</button>
+      <button class="arrow-btn none sukkiri"></button>
+      <button class="arrow-btn sukkiri" id="right-btn2">→</button>
+      <button class="arrow-btn none sukkiri"></button>
+      <button class="arrow-btn sukkiri" id="down-btn2">↓</button>
+      <button class="arrow-btn none sukkiri"></button>
+    </div>
+    <h4 class="sukkiri">比率</h4>
+    <button class="ifr-resize-btn sukkiri" id="wide-frame-size2">①</button>
+    <button class="sukkiri ifr-resize-btn" id="small-frame-size2">②</button>
+  </div>
+  <div class="ping-panel sukkiri">
+    <div class="online-status-indicatator sukkiri" id="online-status-indicatator2"></div>
+    <span class="sukkiri" id="on-offline-text2">ここに値が表示されます</span>
+    <div class="ping-panel">
+      <span id="ping-result-value2"></span>
+    </div>
+  </div>
+  <div class="iframe-label">
+    <div class="side-btn-container">
+      <button class="side-btn" id="side12">①</button>
+      <button class="side-btn" id="side22">②</button>
+      <button class="side-btn" id="side32">③</button>
+      <button class="side-btn" id="side+2">+</button>
+      <button class="side-btn" id="side-2">-</button>
+      <button class="side-btn" id="side-up2">↑</button>
+      <button class="side-btn" id="side-down2">↓</button>
+      <button class="side-btn" id="side-left2">←</button>
+      <button class="side-btn" id="side-right2">→</button>
+    </div>
+    <iframe id="camera-viewer2"
+      src="http://{ipAddress}/ImageViewer?Mode=Motion&Resolution=640x360&Quality=Standard&Interval=10">
+    </iframe>
+  </div>
+  <!--3つ目のネットワークカメラ-->
+  <div class="ip-address-label">
+    <h4 class="sukkiri">IP アドレス</h4>
+    <input type="text" id="ip-address-input3" class="sukkiri"></input>
+    <button class="save-btn sukkiri" id="connect-ip-address-btn3">保存</button>
+  </div>
+  <div class="viewer-angle-label">
+    <h4 class="sukkiri">拡大・縮小</h4>
+    <button class="zoom-btn sukkiri" id="zoom-in-camera-btn3">+</button>
+    <button class="zoom-btn sukkiri" id="zoom-out-camera-btn3">-</button>
+    <h4 class="sukkiri">プリセット</h4>
+    <div class="preset-container">
+      <button id="save-angle13" class="sukkiri">①保存</button>
+      <button id="save-angle23" class="sukkiri">②保存</button>
+      <button id="save-angle33" class="sukkiri">③保存</button>
+      <button id="move-angle13" class="sukkiri">①移動</button>
+      <button id="move-angle23" class="sukkiri">②移動</button>
+      <button id="move-angle33" class="sukkiri">③移動</button>
+    </div>
+    <h4 class="sukkiri">視点移動</h4>
+    <div class="viewer-container">
+      <button class="arrow-btn none sukkiri"></button>
+      <button class="arrow-btn sukkiri" id="up-btn3">↑</button>
+      <button class="arrow-btn none sukkiri"></button>
+      <button class="arrow-btn sukkiri" id="left-btn3">←</button>
+      <button class="arrow-btn none sukkiri"></button>
+      <button class="arrow-btn sukkiri" id="right-btn3">→</button>
+      <button class="arrow-btn none sukkiri"></button>
+      <button class="arrow-btn sukkiri" id="down-btn3">↓</button>
+      <button class="arrow-btn none sukkiri"></button>
+    </div>
+    <h4 class="sukkiri">比率</h4>
+    <button class="ifr-resize-btn sukkiri" id="wide-frame-size3">①</button>
+    <button class="sukkiri ifr-resize-btn" id="small-frame-size3">②</button>
+  </div>
+  <div class="ping-panel sukkiri">
+    <div class="online-status-indicatator sukkiri" id="online-status-indicatator3"></div>
+    <span class="sukkiri" id="on-offline-text3">ここに値が表示されます</span>
+    <div class="ping-panel">
+      <span class="sukkiri" id="ping-result-value3"></span>
+    </div>
+  </div>
+  <div class="iframe-label">
+    <div class="side-btn-container">
+      <button class="side-btn" id="side13">①</button>
+      <button class="side-btn" id="side23">②</button>
+      <button class="side-btn" id="side33">③</button>
+      <button class="side-btn" id="side+3">+</button>
+      <button class="side-btn" id="side-3">-</button>
+      <button class="side-btn" id="side-up3">↑</button>
+      <button class="side-btn" id="side-down3">↓</button>
+      <button class="side-btn" id="side-left3">←</button>
+      <button class="side-btn" id="side-right3">→</button>
+    </div>
+    <iframe id="camera-viewer3"
+      src="http://{ipAddress}/ImageViewer?Mode=Motion&Resolution=640x360&Quality=Standard&Interval=10">
+    </iframe>
+  </div>
 </body>
 <script src="main.js"></script>
+<script src="main2.js"></script>
+<script src="main3.js"></script>
 <script src="ping.js"></script>
-
+<script src="ping.js"></script>
+<script src="ping2.js"></script>
+<script src="ping3.js"></script>
+<br>
 </html>
