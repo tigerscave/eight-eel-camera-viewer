@@ -82,8 +82,8 @@ const wideFrameSizeBtn2 = document.getElementById("wide-frame-size2")
 const smallFrameSizeBtn2 = document.getElementById("small-frame-size2")
 
 wideFrameSizeBtn2.addEventListener('click', () => {
-  cameraViewer2.style.width = '40rem'
-  cameraViewer2.style.height = '20rem';
+  cameraViewer2.style.width = '41rem'
+  cameraViewer2.style.height = '21rem';
 });
 
 smallFrameSizeBtn2.addEventListener('click', () => {

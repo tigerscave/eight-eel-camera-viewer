@@ -193,11 +193,6 @@ input {
 }
 
 /*ラベルの表示*/
-.iframe-label {
-  display: block;
-  margin: 0;
-}
-
 p {
   margin-top: 0.1rem;
   margin-bottom: 0.5rem;
@@ -207,6 +202,7 @@ p {
 /*カメラビューワー*/
 iframe {
   margin-left: 1rem;
+  border: 0;
 }
 
 /*サイドボタン*/

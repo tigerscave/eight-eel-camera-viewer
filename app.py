@@ -84,4 +84,4 @@ ping_thread3 = threading.Thread(target = ping_host3)
 ping_thread3.start()
 
 if __name__ == "__main__":
-    eel.start("index.html", size=(1024,768), port=8083)
+    eel.start("index.html", size=(2000,2900))
