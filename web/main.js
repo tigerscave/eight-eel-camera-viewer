@@ -85,7 +85,7 @@ const saveAngle2Btn = document.getElementById('save-angle2')
 const saveAngle3Btn = document.getElementById('save-angle3')
 
 saveAngle1Btn.addEventListener('click', () => {
-  cameraViewer.src = "http://" + ipAddressInput.value + "/cgi-bin/camposiset?presetset=1"
+  cameraViewer.src = "http://nwcadmin:Passwd34@" + ipAddressInput.value + "/cgi-bin/camposiset?presetset=1"
   //画面遷移を防止するため、ページをリロードする。
   setTimeout(() => {
     location.reload()
@@ -93,14 +93,14 @@ saveAngle1Btn.addEventListener('click', () => {
 });
 
 saveAngle2Btn.addEventListener('click', () => {
-  cameraViewer.src = "http://" + ipAddressInput.value + "/cgi-bin/camposiset?presetset=2"
+  cameraViewer.src = "http://nwcadmin:Passwd34@" + ipAddressInput.value + "/cgi-bin/camposiset?presetset=2"
   setTimeout(() => {
     location.reload()
   }, 100)
 });
 
 saveAngle3Btn.addEventListener('click', () => {
-  cameraViewer.src = "http://" + ipAddressInput.value + "/cgi-bin/image_adjust?brightness=3"
+  cameraViewer.src = "http://nwcadmin:Passwd34@" + ipAddressInput.value + "/cgi-bin/image_adjust?brightness=3"
   setTimeout(() => {
     location.reload()
   }, 100)
@@ -150,11 +150,25 @@ const smallFrameSizeBtn = document.getElementById("small-frame-size")
 wideFrameSizeBtn.addEventListener('click', () => {
   cameraViewer.style.width = '41rem'
   cameraViewer.style.height = '21rem';
+  localStorage.setItem("frameWidth", cameraViewer.style.width.toString());
+  localStorage.setItem("frameHeight", cameraViewer.style.height.toString());
 });
 
 smallFrameSizeBtn.addEventListener('click', () => {
   cameraViewer.style.width = '30rem'
   cameraViewer.style.height = '18rem';
+  localStorage.setItem("frameWidth", cameraViewer.style.width.toString());
+  localStorage.setItem("frameHeight", cameraViewer.style.height.toString());
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+  if (localStorage.getItem("frameWidth") && localStorage.getItem("frameHeight")) {
+    const frameWidth = localStorage.getItem("frameWidth");
+    const frameHeight = localStorage.getItem("frameHeight");
+
+    cameraViewer.style.width = frameWidth;
+    cameraViewer.style.height = frameHeight;
+  }
 });
 
 //ビューワーサイドのボタン
