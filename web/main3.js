@@ -34,7 +34,7 @@ saveAngle2Btn3.addEventListener('click', () => {
 });
 
 saveAngle3Btn3.addEventListener('click', () => {
-  cameraViewer3.src = "http://nwcadmin:Passwd34@" + ipAddressInput3.value + "/cgi-bin/image_adjust?brightness=3"
+  cameraViewer3.src = "http://nwcadmin:Passwd34@" + ipAddressInput3.value + "/cgi-bin/camposiset?presetset=3"
   setTimeout(() => {
     location.reload()
   }, 100)
@@ -82,17 +82,17 @@ const wideFrameSizeBtn3 = document.getElementById("wide-frame-size3")
 const smallFrameSizeBtn3 = document.getElementById("small-frame-size3")
 
 wideFrameSizeBtn3.addEventListener('click', () => {
-  cameraViewer3.style.width = '41rem'
-  cameraViewer3.style.height = '21rem';
+  cameraViewer3.style.width = '800px'
+  cameraViewer3.style.height = '370px';
   localStorage.setItem("frameWidth3" , cameraViewer3.style.width.toString())
-  localStorage.setItem("frameHeigt3" , cameraViewer3.style.height.toString())
+  localStorage.setItem("frameHeight3" , cameraViewer3.style.height.toString())
 });
 
 smallFrameSizeBtn3.addEventListener('click', () => {
-  cameraViewer3.style.width = '30rem'
-  cameraViewer3.style.height = '18rem';
+  cameraViewer3.style.width = '500px'
+  cameraViewer3.style.height = '500px';
   localStorage.setItem("frameWidth3" , cameraViewer3.style.width.toString())
-  localStorage.setItem("frameHeigt3" , cameraViewer3.style.height.toString())
+  localStorage.setItem("frameHeight3" , cameraViewer3.style.height.toString())
 });
 
 document.addEventListener("DOMContentLoaded", function () {

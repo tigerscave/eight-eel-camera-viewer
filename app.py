@@ -7,14 +7,14 @@ eel.init("web")
 
 ##１つ目のネットワークカメラとのping
 @eel.expose
-def ping_host(host):
+def ping_monitoring(host:int):
     while True:
         try:
             host = eel.ipAddressStatus()()
 
-            response_time = ping(host)
+            response_time:int = ping(host)
             if response_time is not None and response_time is not False:
-                result = f"time={response_time} ms"
+                result:str = f"time={response_time} ms"
                 print(f"{host}は応答があります。応答時間{result}")
                 eel.update_ping_result(result)
             else:
@@ -28,12 +28,12 @@ def ping_host(host):
 
         time.sleep(1)
 
-ping_thread = threading.Thread(target = ping_host)
+ping_thread = threading.Thread(target = ping_monitoring)
 ping_thread.start()
 
 ##２つ目のネットワークカメラとのping
 @eel.expose
-def ping_host2(host2):
+def ping_monitoring2(host2):
     while True:
         try:
             host2 = eel.ipAddressStatus2()()
@@ -54,12 +54,12 @@ def ping_host2(host2):
 
         time.sleep(1)
 
-ping_thread2 = threading.Thread(target = ping_host2)
+ping_thread2 = threading.Thread(target = ping_monitoring2)
 ping_thread2.start()
 
 ##３つ目のネットワークカメラとのping
 @eel.expose
-def ping_host3(host3):
+def ping_monitoring3(host3):
     while True:
         try:
             host3 = eel.ipAddressStatus3()()
@@ -80,7 +80,7 @@ def ping_host3(host3):
 
         time.sleep(1)
 
-ping_thread3 = threading.Thread(target = ping_host3)
+ping_thread3 = threading.Thread(target = ping_monitoring3)
 ping_thread3.start()
 
 if __name__ == "__main__":

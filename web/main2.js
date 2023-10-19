@@ -34,7 +34,7 @@ saveAngle2Btn2.addEventListener('click', () => {
 });
 
 saveAngle3Btn2.addEventListener('click', () => {
-  cameraViewer2.src = "http://nwcadmin:Passwd34@" + ipAddressInput2.value + "/cgi-bin/image_adjust?brightness=3"
+  cameraViewer2.src = "http://nwcadmin:Passwd34@" + ipAddressInput2.value + "/cgi-bin/camposiset?presetset=3"
   setTimeout(() => {
     location.reload()
   }, 100)
@@ -82,15 +82,17 @@ const wideFrameSizeBtn2 = document.getElementById("wide-frame-size2")
 const smallFrameSizeBtn2 = document.getElementById("small-frame-size2")
 
 wideFrameSizeBtn2.addEventListener('click', () => {
-  cameraViewer2.style.width = '41rem'
-  cameraViewer2.style.height = '21rem';
+  cameraViewer2.style.width = '800px'
+  cameraViewer2.style.height = '370px';
   localStorage.setItem("frameWidth2" , cameraViewer2.style.width.toString())
-  localStorage.setItem("frameHeight2", cameraViewer2.style.height.tostring())
+  localStorage.setItem("frameHeight2", cameraViewer2.style.height.toString())
 });
 
 smallFrameSizeBtn2.addEventListener('click', () => {
-  cameraViewer2.style.width = '30rem'
-  cameraViewer2.style.height = '18rem';
+  cameraViewer2.style.width = '500px'
+  cameraViewer2.style.height = '500px';
+  localStorage.setItem("frameWidth2" , cameraViewer2.style.width.toString())
+  localStorage.setItem("frameHeight2", cameraViewer2.style.height.toString())
 });
 
 document.addEventListener("DOMContentLoaded", function () {
