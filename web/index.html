@@ -78,8 +78,9 @@
         <button class="side-btn" id="side-left">←</button>
         <button class="side-btn" id="side-right">→</button>
       </div>
-      <iframe id="camera-viewer"
-        src="http://{ipAddress}/ImageViewer?Mode=Motion&Resolution=640x360&Quality=Standard&Interval=10">
+      <iframe id="camera-viewer" class="iframe"
+        src="http://{ipAddress}/ImageViewer?Mode=Motion&Resolution=640x360&Quality=Motion&Interval=10"
+        scrolling="no">
       </iframe>
     </div>
   </div>
@@ -138,7 +139,7 @@
       <button class="side-btn" id="side-right2">→</button>
     </div>
     <iframe id="camera-viewer2"
-      src="http://{ipAddress}/ImageViewer?Mode=Motion&Resolution=640x360&Quality=Standard&Interval=10">
+      src="http://{ipAddress}/ImageViewer?Mode=Motion&Resolution=640x360&Quality=Motion&Interval=10" scrolling="no">
     </iframe>
   </div>
   <!--3つ目のネットワークカメラ-->
@@ -196,7 +197,7 @@
       <button class="side-btn" id="side-right3">→</button>
     </div>
     <iframe id="camera-viewer3"
-      src="http://{ipAddress}/ImageViewer?Mode=Motion&Resolution=640x360&Quality=Standard&Interval=10">
+      src="http://{ipAddress}/ImageViewer?Mode=Motion&Resolution=640x360&Quality=Motion&Interval=10" scrolling="no">
     </iframe>
   </div>
 </body>
@@ -207,5 +208,5 @@
 <script src="ping.js"></script>
 <script src="ping2.js"></script>
 <script src="ping3.js"></script>
-<br>
+<p style="margin-bottom: 40rem;">
 </html>

@@ -9,7 +9,7 @@ reloadBtn.addEventListener('click', () => {
   setTimeout(() => {
     reloadText.classList.remove('appear');
     location.reload() //ボタンを押した、1秒後にリセットをかける
-  }, 1000)
+  }, 1000);
 });
 
 //Webページの拡大、縮小ボタン
@@ -85,25 +85,25 @@ const saveAngle2Btn = document.getElementById('save-angle2')
 const saveAngle3Btn = document.getElementById('save-angle3')
 
 saveAngle1Btn.addEventListener('click', () => {
-  cameraViewer.src = "http://" + ipAddressInput.value + "/cgi-bin/camposiset?presetset=1"
+  cameraViewer.src = "http://nwcadmin:Passwd34@" + ipAddressInput.value + "/cgi-bin/camposiset?presetset=1"
   //画面遷移を防止するため、ページをリロードする。
   setTimeout(() => {
     location.reload()
-  }, 100)
+  }, 100);
 });
 
 saveAngle2Btn.addEventListener('click', () => {
-  cameraViewer.src = "http://" + ipAddressInput.value + "/cgi-bin/camposiset?presetset=2"
+  cameraViewer.src = "http://nwcadmin:Passwd34@" + ipAddressInput.value + "/cgi-bin/camposiset?presetset=2"
   setTimeout(() => {
     location.reload()
-  }, 100)
+  }, 100);
 });
 
 saveAngle3Btn.addEventListener('click', () => {
-  cameraViewer.src = "http://" + ipAddressInput.value + "/cgi-bin/image_adjust?brightness=3"
+  cameraViewer.src = "http://nwcadmin:Passwd34@" + ipAddressInput.value + "/cgi-bin/camposiset?presetset=3"
   setTimeout(() => {
     location.reload()
-  }, 100)
+  }, 100);
 });
 
 //移動①〜③ボタン
@@ -148,13 +148,27 @@ const wideFrameSizeBtn = document.getElementById("wide-frame-size")
 const smallFrameSizeBtn = document.getElementById("small-frame-size")
 
 wideFrameSizeBtn.addEventListener('click', () => {
-  cameraViewer.style.width = '40rem'
-  cameraViewer.style.height = '20rem';
+  cameraViewer.style.width = '800px'
+  cameraViewer.style.height = '370px';
+  localStorage.setItem("frameWidth", cameraViewer.style.width.toString());
+  localStorage.setItem("frameHeight", cameraViewer.style.height.toString());
 });
 
 smallFrameSizeBtn.addEventListener('click', () => {
-  cameraViewer.style.width = '30rem'
-  cameraViewer.style.height = '18rem';
+  cameraViewer.style.width = '500px'
+  cameraViewer.style.height = '500px';
+  localStorage.setItem("frameWidth", cameraViewer.style.width.toString());
+  localStorage.setItem("frameHeight", cameraViewer.style.height.toString());
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+  if (localStorage.getItem("frameWidth") && localStorage.getItem("frameHeight")) {
+    const frameWidth = localStorage.getItem("frameWidth");
+    const frameHeight = localStorage.getItem("frameHeight");
+
+    cameraViewer.style.width = frameWidth;
+    cameraViewer.style.height = frameHeight;
+  }
 });
 
 //ビューワーサイドのボタン

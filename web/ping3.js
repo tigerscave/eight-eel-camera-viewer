@@ -41,7 +41,7 @@ function update_ping_result3(response_time3) {
 connectIpAddressBtn3.addEventListener('click', async () => {
   const host3 = ipAddressInput3.value;//pingが通信する相手は、入力されたIPアドレス
   try {
-    const res3 = await eel.ping_host3(host3);
+    const res3 = await eel.ping_monitoring3(host3);
   } catch (error) {
     displayOfflineEvent3();
   }
@@ -65,7 +65,7 @@ window.addEventListener('load', async () => {
   async function pingLoop3() {
     while (pingLoopActive3) {
       try {
-        const res3 = await eel.ping_host3(host3);
+        const res3 = await eel.ping_monitoring3(host3);
         if (res3 === "オフライン(通信データなし）") {
           displayOfflineEvent3();
         }
