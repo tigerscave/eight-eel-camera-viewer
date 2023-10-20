@@ -8,21 +8,21 @@ eel.init("web")
 
 ##１つ目のネットワークカメラとのping
 @eel.expose
-def ping_monitoring(host:int) -> str:
+def ping_monitoring(host:int) -> None:
     while True:
         try:
             host:int = eel.ipAddressStatus()()
 
             response_time:Union[int, None, bool]= ping(host)
-            if response_time is not None and response_time is not False:
+            if response_time is not None and response_time is not False: ##ping疎通成功
                 result = f"time={response_time} ms"
                 print(f"{host}は応答があります。応答時間{result}")
                 eel.update_ping_result(result)
-            else:
+            else: ##ping疎通失敗（対象のhostから応答なし、もしくは、そもそも対象のhostがない）
                 result = "オフライン(通信データなし)"
                 print(f"{host}は応答がありません")
                 eel.update_ping_result(result)
-        except OSError as e:
+        except OSError as e: ##入力された値がint以外だった場合
             result:str = "オフライン（通信データなし）"
             print(f"{host}は応答がありません: {str(e)}")
             eel.update_ping_result(result)
