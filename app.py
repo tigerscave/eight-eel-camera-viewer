@@ -2,19 +2,20 @@ import eel
 import time
 from ping3 import ping
 import threading
+from typing import Union
 
 eel.init("web")
 
 ##１つ目のネットワークカメラとのping
 @eel.expose
-def ping_monitoring(host:int):
+def ping_monitoring(host:int) -> str:
     while True:
         try:
-            host = eel.ipAddressStatus()()
+            host:int = eel.ipAddressStatus()()
 
-            response_time:int = ping(host)
+            response_time:Union[int, None, bool]= ping(host)
             if response_time is not None and response_time is not False:
-                result:str = f"time={response_time} ms"
+                result = f"time={response_time} ms"
                 print(f"{host}は応答があります。応答時間{result}")
                 eel.update_ping_result(result)
             else:
@@ -22,7 +23,7 @@ def ping_monitoring(host:int):
                 print(f"{host}は応答がありません")
                 eel.update_ping_result(result)
         except OSError as e:
-            result = "オフライン（通信データなし）"
+            result:str = "オフライン（通信データなし）"
             print(f"{host}は応答がありません: {str(e)}")
             eel.update_ping_result(result)
 
@@ -30,6 +31,7 @@ def ping_monitoring(host:int):
 
 ping_thread = threading.Thread(target = ping_monitoring)
 ping_thread.start()
+
 
 ##２つ目のネットワークカメラとのping
 @eel.expose
