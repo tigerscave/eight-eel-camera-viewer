@@ -41,7 +41,7 @@ function update_ping_result2(response_time2) {
 connectIpAddressBtn2.addEventListener('click', async () => {
   const host2 = ipAddressInput2.value;//pingが通信する相手は、入力されたIPアドレス
   try {
-    const res2 = await eel.ping_monitoring2(host2);
+    const res2 = await eel.ping_monitoring2();
   } catch (error) {
     displayOfflineEvent2();
   }
@@ -60,22 +60,6 @@ window.addEventListener('load', async () => {
     ipAddressInput2.value = storedIpAddress2
     cameraViewer2.src = "http://" + storedIpAddress2 + "/ImageViewer?Mode=Motion&Resolution=640x360&Quality=Standard&Interval=10";
   }
-  let pingLoopActive2 = true;
-
-  async function pingLoop2() {
-    while (pingLoopActive2) {
-      try {
-        const res2 = await eel.ping_monitoring2(host2);
-        if (res2 === "オフライン(通信データなし）") {
-          displayOfflineEvent2();
-        }
-      } catch (error) {
-        displayOfflineEvent2();
-      }
-      await new Promise(relolve => setTimeout(relolve, 1000));
-    }
-  }
-  pingLoop2();
 });
 
 eel.expose(changeOnlineStatus2);

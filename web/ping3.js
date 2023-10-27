@@ -60,22 +60,6 @@ window.addEventListener('load', async () => {
     ipAddressInput3.value = storedIpAddress3
     cameraViewer3.src = "http://" + storedIpAddress3 + "/ImageViewer?Mode=Motion&Resolution=640x360&Quality=Standard&Interval=10";
   }
-  let pingLoopActive3 = true;
-
-  async function pingLoop3() {
-    while (pingLoopActive3) {
-      try {
-        const res3 = await eel.ping_monitoring3(host3);
-        if (res3 === "オフライン(通信データなし）") {
-          displayOfflineEvent3();
-        }
-      } catch (error) {
-        displayOfflineEvent3();
-      }
-      await new Promise(relolve => setTimeout(relolve, 1000));
-    }
-  }
-  pingLoop3();
 });
 
 eel.expose(changeOnlineStatus3);

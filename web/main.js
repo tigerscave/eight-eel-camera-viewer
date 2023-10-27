@@ -6,10 +6,7 @@ const reloadText = document.getElementById("reload-text")
 
 reloadBtn.addEventListener('click', () => {
   reloadText.classList.add('appear');
-  setTimeout(() => {
-    reloadText.classList.remove('appear');
-    location.reload() //ボタンを押した、1秒後にリセットをかける
-  }, 1000);
+  location.reload()
 });
 
 //Webページの拡大、縮小ボタン
