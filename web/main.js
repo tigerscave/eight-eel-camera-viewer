@@ -13,14 +13,6 @@ reloadBtn.addEventListener('click', () => {
   location.reload()
 });
 
-
-eel.expose(update_ping_result);
-function update_ping_result(response_time) {
-  // const match = response_time.match(/time=(\d+\.\d+)\s*ms/);
-  console.log("_______*****________")
-}
-
-
 //Webページの拡大、縮小ボタン
 const zoomInScreenBtn = document.getElementById("zoom-in-screen-btn")
 const zoomOutScreenBtn = document.getElementById("zoom-out-screen-btn")
@@ -30,14 +22,14 @@ const screenZoomLevel = document.getElementById("screen-zoom-level")
 let zoomLevel = 1.0; //初期値を1.0とする
 
 zoomInScreenBtn.addEventListener('click', () => {
-  zoomLevel = zoomLevel + 0.1;
+  zoomLevel = zoomLevel + 0.2;
   screenPage.style.transformOrigin = `top left`;//左上を基準
-  screenPage.style.transform = `scale(${zoomLevel})`;//0.1ずつ拡大
+  screenPage.style.transform = `scale(${zoomLevel})`;//0.2ずつ拡大
   screenZoomLevel.innerText = zoomLevel.toFixed(1);
 });
 
 zoomOutScreenBtn.addEventListener('click', () => {
-  zoomLevel = zoomLevel - 0.1;
+  zoomLevel = zoomLevel - 0.2;
   screenPage.style.transformOrigin = `top left`;
   screenPage.style.transform = `scale(${zoomLevel})`;
   screenZoomLevel.innerText = zoomLevel.toFixed(1);
@@ -95,24 +87,14 @@ const saveAngle3Btn = document.getElementById('save-angle3')
 
 saveAngle1Btn.addEventListener('click', () => {
   cameraViewer.src = "http://nwcadmin:Passwd34@" + ipAddressInput.value + "/cgi-bin/camposiset?presetset=1"
-  //画面遷移を防止するため、ページをリロードする。
-  setTimeout(() => {
-    location.reload()
-  }, 100);
 });
 
 saveAngle2Btn.addEventListener('click', () => {
   cameraViewer.src = "http://nwcadmin:Passwd34@" + ipAddressInput.value + "/cgi-bin/camposiset?presetset=2"
-  setTimeout(() => {
-    location.reload()
-  }, 100);
 });
 
 saveAngle3Btn.addEventListener('click', () => {
   cameraViewer.src = "http://nwcadmin:Passwd34@" + ipAddressInput.value + "/cgi-bin/camposiset?presetset=3"
-  setTimeout(() => {
-    location.reload()
-  }, 100);
 });
 
 //移動①〜③ボタン

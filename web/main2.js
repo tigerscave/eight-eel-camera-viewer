@@ -20,24 +20,14 @@ const saveAngle3Btn2 = document.getElementById('save-angle32')
 
 saveAngle1Btn2.addEventListener('click', () => {
   cameraViewer2.src = "http://nwcadmin:Passwd34@" + ipAddressInput2.value + "/cgi-bin/camposiset?presetset=1"
-  //画面遷移を防止するため、ページをリロードする。
-  setTimeout(() => {
-    location.reload()
-  }, 100)
 });
 
 saveAngle2Btn2.addEventListener('click', () => {
   cameraViewer2.src = "http://nwcadmin:Passwd34@" + ipAddressInput2.value + "/cgi-bin/camposiset?presetset=2"
-  setTimeout(() => {
-    location.reload()
-  }, 100)
 });
 
 saveAngle3Btn2.addEventListener('click', () => {
   cameraViewer2.src = "http://nwcadmin:Passwd34@" + ipAddressInput2.value + "/cgi-bin/camposiset?presetset=3"
-  setTimeout(() => {
-    location.reload()
-  }, 100)
 });
 
 //移動①〜③ボタン
