@@ -43,8 +43,7 @@ function update_ping_result(response_time) {
 
 connectIpAddressBtn.addEventListener('click', async () => {
   const host = ipAddressInput.value;//pingが通信する相手は、入力されたIPアドレス
-  console.log(host)
-  console.log("_____")
+
   if (connectIpAddressBtn.innerText === "編集") {
     editIpAddressMode();
   } else if (connectIpAddressBtn.innerText === "保存") {
@@ -56,6 +55,7 @@ connectIpAddressBtn.addEventListener('click', async () => {
 
 //ページを読み込んだ際の挙動
 window.addEventListener('load', async () => {
+  console.log("___**____")
   const storedIpAddress = localStorage.getItem('ip-address');
   const host = storedIpAddress
   if (storedIpAddress) {
@@ -64,11 +64,6 @@ window.addEventListener('load', async () => {
   }
 
 });
-
-eel.expose(changeOnlineStatus);
-function changeOnlineStatus(value) {
-  onOfflineText.innerText = value;
-}
 
 eel.expose(ipAddressStatus);
 function ipAddressStatus() {

@@ -62,10 +62,6 @@ window.addEventListener('load', async () => {
   }
 });
 
-eel.expose(changeOnlineStatus3);
-function changeOnlineStatus3(value) {
-  onOfflineText3.innerText = value;
-}
 
 eel.expose(ipAddressStatus3);
 function ipAddressStatus3() {

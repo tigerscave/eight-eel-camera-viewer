@@ -55,17 +55,11 @@ connectIpAddressBtn2.addEventListener('click', async () => {
 //ページを読み込んだ際の挙動
 window.addEventListener('load', async () => {
   const storedIpAddress2 = localStorage.getItem('ip-address2');
-  const host2 = storedIpAddress2
   if (storedIpAddress2) {
     ipAddressInput2.value = storedIpAddress2
     cameraViewer2.src = "http://" + storedIpAddress2 + "/ImageViewer?Mode=Motion&Resolution=640x360&Quality=Standard&Interval=10";
   }
 });
-
-eel.expose(changeOnlineStatus2);
-function changeOnlineStatus2(value) {
-  onOfflineText2.innerText = value;
-}
 
 eel.expose(ipAddressStatus2);
 function ipAddressStatus2() {

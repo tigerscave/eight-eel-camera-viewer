@@ -4,10 +4,17 @@
 const reloadBtn = document.getElementById("reload-btn")
 const reloadText = document.getElementById("reload-text")
 
+const interval = setInterval(() => {
+  eel.check_online_status()
+}, 1000)
+
 reloadBtn.addEventListener('click', () => {
   reloadText.classList.add('appear');
+  clearInterval(interval)
   location.reload()
 });
+
+
 
 //Webページの拡大、縮小ボタン
 const zoomInScreenBtn = document.getElementById("zoom-in-screen-btn")

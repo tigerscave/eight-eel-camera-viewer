@@ -22,7 +22,6 @@ def ping_monitoring() -> None:
         response_time:Union[int, None, bool]= ping(host)
         if response_time is not None and response_time is not False: ##ping疎通成功
             result = f"time={response_time} ms"
-            print(f"{host}は応答があります。応答時間{result}")
             eel.update_ping_result(result)
         else: ##ping疎通失敗（対象のhostから応答なし、もしくは、そもそも対象のhostがない）
             result = "オフライン(通信データなし)"
@@ -45,7 +44,6 @@ def ping_monitoring2():
         response_time2 = ping(host2)
         if response_time2 is not None and response_time2 is not False:
             result2 = f"time={response_time2} ms"
-            print(f"{host2}は応答があります。応答時間{result2}")
             eel.update_ping_result2(result2)
         else:
             result2 = "オフライン(通信データなし)"
@@ -68,7 +66,6 @@ def ping_monitoring3():
         response_time3 = ping(host3)
         if response_time3 is not None and response_time3 is not False:
             result3 = f"time={response_time3} ms"
-            print(f"{host3}は応答があります。応答時間{result3}")
             eel.update_ping_result3(result3)
         else:
             result3 = "オフライン(通信データなし)"
