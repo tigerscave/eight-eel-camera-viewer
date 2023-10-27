@@ -3,14 +3,23 @@
 //更新ボタン
 const reloadBtn = document.getElementById("reload-btn")
 const reloadText = document.getElementById("reload-text")
+const interval = setInterval(() => {
+  eel.check_online_status()
+}, 1000);
 
 reloadBtn.addEventListener('click', () => {
   reloadText.classList.add('appear');
-  setTimeout(() => {
-    reloadText.classList.remove('appear');
-    location.reload() //ボタンを押した、1秒後にリセットをかける
-  }, 1000);
+  clearInterval(interval);
+  location.reload()
 });
+
+
+eel.expose(update_ping_result);
+function update_ping_result(response_time) {
+  // const match = response_time.match(/time=(\d+\.\d+)\s*ms/);
+  console.log("_______*****________")
+}
+
 
 //Webページの拡大、縮小ボタン
 const zoomInScreenBtn = document.getElementById("zoom-in-screen-btn")

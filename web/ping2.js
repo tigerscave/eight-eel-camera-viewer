@@ -1,3 +1,10 @@
+//IPアドレス関係
+const ipAddressInput2 = document.getElementById("ip-address-input2")
+const connectIpAddressBtn2 = document.getElementById("connect-ip-address-btn2")
+const cameraViewer2 = document.getElementById("camera-viewer2")
+const onlineStatusIndicator2 = document.getElementById("online-status-indicatator2")
+const onOfflineText2 = document.getElementById("on-offline-text2")
+
 //IPアドレス編集モード⇔読み込みモード切り替え関数のまとめ
 function editIpAddressMode2() {
   connectIpAddressBtn2.innerText = "保存";
@@ -19,12 +26,6 @@ function displayOfflineEvent2() {
   onlineStatusIndicator2.style.backgroundColor = "lightgray"
 };
 
-//IPアドレス関係
-const ipAddressInput2 = document.getElementById("ip-address-input2")
-const connectIpAddressBtn2 = document.getElementById("connect-ip-address-btn2")
-const cameraViewer2 = document.getElementById("camera-viewer2")
-const onlineStatusIndicator2 = document.getElementById("online-status-indicatator2")
-const onOfflineText2 = document.getElementById("on-offline-text2")
 
 eel.expose(update_ping_result2);
 function update_ping_result2(response_time2) {
@@ -40,11 +41,6 @@ function update_ping_result2(response_time2) {
 
 connectIpAddressBtn2.addEventListener('click', async () => {
   const host2 = ipAddressInput2.value;//pingが通信する相手は、入力されたIPアドレス
-  try {
-    const res2 = await eel.ping_monitoring2(host2);
-  } catch (error) {
-    displayOfflineEvent2();
-  }
   if (connectIpAddressBtn2.innerText === "編集") {
     editIpAddressMode2();
   } else if (connectIpAddressBtn2.innerText === "保存") {
@@ -60,28 +56,7 @@ window.addEventListener('load', async () => {
     ipAddressInput2.value = storedIpAddress2
     cameraViewer2.src = "http://" + storedIpAddress2 + "/ImageViewer?Mode=Motion&Resolution=640x360&Quality=Standard&Interval=10";
   }
-  let pingLoopActive2 = true;
-
-  async function pingLoop2() {
-    while (pingLoopActive2) {
-      try {
-        const res2 = await eel.ping_monitoring2(host2);
-        if (res2 === "オフライン(通信データなし）") {
-          displayOfflineEvent2();
-        }
-      } catch (error) {
-        displayOfflineEvent2();
-      }
-      await new Promise(relolve => setTimeout(relolve, 1000));
-    }
-  }
-  pingLoop2();
 });
-
-eel.expose(changeOnlineStatus2);
-function changeOnlineStatus2(value) {
-  onOfflineText2.innerText = value;
-}
 
 eel.expose(ipAddressStatus2);
 function ipAddressStatus2() {
