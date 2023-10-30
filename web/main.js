@@ -22,16 +22,18 @@ const screenZoomLevel = document.getElementById("screen-zoom-level")
 let zoomLevel = 1.0; //初期値を1.0とする
 
 zoomInScreenBtn.addEventListener('click', () => {
-  zoomLevel = zoomLevel + 0.2;
+  zoomLevel = zoomLevel + 0.1;
   screenPage.style.transformOrigin = `top left`;//左上を基準
-  screenPage.style.transform = `scale(${zoomLevel})`;//0.2ずつ拡大
+  screenPage.style.transform = `scale(${zoomLevel})`;//0.1ずつ拡大
+  localStorage.setItem("zoomLevel" , zoomLevel)
   screenZoomLevel.innerText = zoomLevel.toFixed(1);
 });
 
 zoomOutScreenBtn.addEventListener('click', () => {
-  zoomLevel = zoomLevel - 0.2;
+  zoomLevel = zoomLevel - 0.1;
   screenPage.style.transformOrigin = `top left`;
   screenPage.style.transform = `scale(${zoomLevel})`;
+  localStorage.setItem("zoomLevel" , zoomLevel)
   screenZoomLevel.innerText = zoomLevel.toFixed(1);
 });
 
@@ -56,9 +58,21 @@ sukkiriOff.addEventListener('click', () => {
   });
 });
 
-//ローカルストレージに、すっきりモード設定を保存
+//ローカルストレージから、Webページのズームレベル・すっきりモード読み込み
 function loadUIState() {
   const sukkiriMode = localStorage.getItem("sukkiriMode");
+  const storagedZoomLevel = localStorage.getItem("zoomLevel");
+  if(storagedZoomLevel !== null) {
+    zoomLevel = parseFloat(storagedZoomLevel);
+    if(!isNaN(zoomLevel)) {
+      screenPage.style.transformOrigin = "top left";
+      screenPage.style.transform = `scale(${zoomLevel.toFixed(1)})`;
+      screenZoomLevel.innerText = zoomLevel.toFixed(1);
+    }
+  } else {
+    zoomLevel = 1.0
+    screenZoomLevel.innerText = zoomLevel.toFixed(1);
+  }
   if (sukkiriMode === "true") {
     sukkiriOn.click();
   } else {
