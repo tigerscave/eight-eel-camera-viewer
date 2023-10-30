@@ -8,7 +8,6 @@ const interval = setInterval(() => {
 }, 1000);
 
 reloadBtn.addEventListener('click', () => {
-  reloadText.classList.add('appear');
   clearInterval(interval);
   location.reload()
 });
@@ -25,7 +24,7 @@ zoomInScreenBtn.addEventListener('click', () => {
   zoomLevel = zoomLevel + 0.1;
   screenPage.style.transformOrigin = `top left`;//左上を基準
   screenPage.style.transform = `scale(${zoomLevel})`;//0.1ずつ拡大
-  localStorage.setItem("zoomLevel" , zoomLevel)
+  localStorage.setItem("zoomLevel", zoomLevel)
   screenZoomLevel.innerText = zoomLevel.toFixed(1);
 });
 
@@ -33,7 +32,7 @@ zoomOutScreenBtn.addEventListener('click', () => {
   zoomLevel = zoomLevel - 0.1;
   screenPage.style.transformOrigin = `top left`;
   screenPage.style.transform = `scale(${zoomLevel})`;
-  localStorage.setItem("zoomLevel" , zoomLevel)
+  localStorage.setItem("zoomLevel", zoomLevel)
   screenZoomLevel.innerText = zoomLevel.toFixed(1);
 });
 
@@ -62,9 +61,9 @@ sukkiriOff.addEventListener('click', () => {
 function loadUIState() {
   const sukkiriMode = localStorage.getItem("sukkiriMode");
   const storagedZoomLevel = localStorage.getItem("zoomLevel");
-  if(storagedZoomLevel !== null) {
+  if (storagedZoomLevel !== null) {
     zoomLevel = parseFloat(storagedZoomLevel);
-    if(!isNaN(zoomLevel)) {
+    if (!isNaN(zoomLevel)) {
       screenPage.style.transformOrigin = "top left";
       screenPage.style.transform = `scale(${zoomLevel.toFixed(1)})`;
       screenZoomLevel.innerText = zoomLevel.toFixed(1);
