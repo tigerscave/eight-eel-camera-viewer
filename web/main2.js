@@ -19,7 +19,7 @@ const saveAngle2Btn2 = document.getElementById('save-angle22')
 const saveAngle3Btn2 = document.getElementById('save-angle32')
 
 saveAngle1Btn2.addEventListener('click', () => {
-  cameraViewer2.src = "http://nwcadmin:Passwd34@" + ipAddressInput2.value + "/cgi-bin/camposiset?presetset=1"
+  cameraViewer2.src = "http://" + ipAddressInput2.value + "/cgi-bin/camposiset?presetset=1"
 });
 
 saveAngle2Btn2.addEventListener('click', () => {

@@ -1,6 +1,8 @@
 import eel
 from ping3 import ping
 from typing import Union
+import requests
+from requests.auth import HTTPDigestAuth
 
 eel.init("web")
 
@@ -71,5 +73,15 @@ def ping_monitoring3():
             print(f"{host3}は応答がありません: {str(e)}")
             eel.update_ping_result3(result3)
 
+@eel.expose
+def save_request():
+    response = requests.get(
+         'http://192.168.11.240/cgi-bin/camposiset?presetset=1',
+         auth=HTTPDigestAuth("nwcadmin", "Passwd34"))
+    print(response)
+    print(response.status_code)
+    print(response.text)
+
 if __name__ == "__main__":
     eel.start("index.html", size=(2000,3500))
+
