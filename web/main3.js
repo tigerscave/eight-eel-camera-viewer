@@ -73,7 +73,7 @@ const smallFrameSizeBtn3 = document.getElementById("small-frame-size3")
 
 wideFrameSizeBtn3.addEventListener('click', () => {
   cameraViewer3.style.width = '800px'
-  cameraViewer3.style.height = '370px';
+  cameraViewer3.style.height = '360px';
   localStorage.setItem("frameWidth3" , cameraViewer3.style.width.toString())
   localStorage.setItem("frameHeight3" , cameraViewer3.style.height.toString())
 });

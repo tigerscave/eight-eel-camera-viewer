@@ -180,7 +180,6 @@ input {
 /*オンライン、オフライン*/
 .ping-panel {
   display: flex;
-  margin-bottom: 0.2rem;
 }
 
 .online-status-indicatator {
