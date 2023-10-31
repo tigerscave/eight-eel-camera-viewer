@@ -20,14 +20,17 @@ const saveAngle3Btn2 = document.getElementById('save-angle32')
 
 saveAngle1Btn2.addEventListener('click', () => {
   cameraViewer2.src = "http://nwcadmin:Passwd34@" + ipAddressInput2.value + "/cgi-bin/camposiset?presetset=1"
+  eel.access_microsoft_edge(url);
 });
 
 saveAngle2Btn2.addEventListener('click', () => {
   cameraViewer2.src = "http://nwcadmin:Passwd34@" + ipAddressInput2.value + "/cgi-bin/camposiset?presetset=2"
+  eel.access_microsoft_edge(url);
 });
 
 saveAngle3Btn2.addEventListener('click', () => {
   cameraViewer2.src = "http://nwcadmin:Passwd34@" + ipAddressInput2.value + "/cgi-bin/camposiset?presetset=3"
+  eel.access_microsoft_edge(url);
 });
 
 //移動①〜③ボタン

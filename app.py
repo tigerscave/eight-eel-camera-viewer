@@ -1,8 +1,15 @@
 import eel
 from ping3 import ping
 from typing import Union
+from selenium import webdriver
 
 eel.init("web")
+
+# Microsoft Edgeを使用してアプリを開く
+@eel.expose
+def access_microsoft_edge(url):
+    driver = webdriver.Edge()
+    driver.get(url)
 
 @eel.expose
 def check_online_status():
