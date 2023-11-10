@@ -3,13 +3,13 @@
 //更新ボタン
 const reloadBtn = document.getElementById("reload-btn")
 const reloadText = document.getElementById("reload-text")
+const interval = setInterval(() => {
+  eel.check_online_status()
+}, 1000);
 
 reloadBtn.addEventListener('click', () => {
-  reloadText.classList.add('appear');
-  setTimeout(() => {
-    reloadText.classList.remove('appear');
-    location.reload() //ボタンを押した、1秒後にリセットをかける
-  }, 1000);
+  clearInterval(interval);
+  location.reload()
 });
 
 //Webページの拡大、縮小ボタン
@@ -24,6 +24,7 @@ zoomInScreenBtn.addEventListener('click', () => {
   zoomLevel = zoomLevel + 0.1;
   screenPage.style.transformOrigin = `top left`;//左上を基準
   screenPage.style.transform = `scale(${zoomLevel})`;//0.1ずつ拡大
+  localStorage.setItem("zoomLevel", zoomLevel)
   screenZoomLevel.innerText = zoomLevel.toFixed(1);
 });
 
@@ -31,6 +32,7 @@ zoomOutScreenBtn.addEventListener('click', () => {
   zoomLevel = zoomLevel - 0.1;
   screenPage.style.transformOrigin = `top left`;
   screenPage.style.transform = `scale(${zoomLevel})`;
+  localStorage.setItem("zoomLevel", zoomLevel)
   screenZoomLevel.innerText = zoomLevel.toFixed(1);
 });
 
@@ -55,9 +57,21 @@ sukkiriOff.addEventListener('click', () => {
   });
 });
 
-//ローカルストレージに、すっきりモード設定を保存
+//ローカルストレージから、Webページのズームレベル・すっきりモード読み込み
 function loadUIState() {
   const sukkiriMode = localStorage.getItem("sukkiriMode");
+  const storagedZoomLevel = localStorage.getItem("zoomLevel");
+  if (storagedZoomLevel !== null) {
+    zoomLevel = parseFloat(storagedZoomLevel);
+    if (!isNaN(zoomLevel)) {
+      screenPage.style.transformOrigin = "top left";
+      screenPage.style.transform = `scale(${zoomLevel.toFixed(1)})`;
+      screenZoomLevel.innerText = zoomLevel.toFixed(1);
+    }
+  } else {
+    zoomLevel = 1.0
+    screenZoomLevel.innerText = zoomLevel.toFixed(1);
+  }
   if (sukkiriMode === "true") {
     sukkiriOn.click();
   } else {
@@ -85,25 +99,16 @@ const saveAngle2Btn = document.getElementById('save-angle2')
 const saveAngle3Btn = document.getElementById('save-angle3')
 
 saveAngle1Btn.addEventListener('click', () => {
-  cameraViewer.src = "http://nwcadmin:Passwd34@" + ipAddressInput.value + "/cgi-bin/camposiset?presetset=1"
-  //画面遷移を防止するため、ページをリロードする。
-  setTimeout(() => {
-    location.reload()
-  }, 100);
+  eel.save_request();
+  // cameraViewer.src = "http://" + ipAddressInput.value + "/cgi-bin/camposiset?presetset=1"
 });
 
 saveAngle2Btn.addEventListener('click', () => {
   cameraViewer.src = "http://nwcadmin:Passwd34@" + ipAddressInput.value + "/cgi-bin/camposiset?presetset=2"
-  setTimeout(() => {
-    location.reload()
-  }, 100);
 });
 
 saveAngle3Btn.addEventListener('click', () => {
   cameraViewer.src = "http://nwcadmin:Passwd34@" + ipAddressInput.value + "/cgi-bin/camposiset?presetset=3"
-  setTimeout(() => {
-    location.reload()
-  }, 100);
 });
 
 //移動①〜③ボタン
@@ -149,7 +154,7 @@ const smallFrameSizeBtn = document.getElementById("small-frame-size")
 
 wideFrameSizeBtn.addEventListener('click', () => {
   cameraViewer.style.width = '800px'
-  cameraViewer.style.height = '370px';
+  cameraViewer.style.height = '360px';
   localStorage.setItem("frameWidth", cameraViewer.style.width.toString());
   localStorage.setItem("frameHeight", cameraViewer.style.height.toString());
 });

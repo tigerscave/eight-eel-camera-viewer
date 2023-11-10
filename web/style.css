@@ -17,6 +17,27 @@ body {
   color: white;
   background-color: #144998;
   transform: scale(var(--scale));
+
+  /* スクロールバーを非表示にする */
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: transparent;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }
 
 /*各ラベルの表示*/
@@ -93,7 +114,8 @@ h4 {
   background-color: #eee;
 }
 
-.edit-btn,.save-btn {
+.edit-btn,
+.save-btn {
   width: 4rem;
   height: 2rem;
   border: 1px solid;
@@ -180,7 +202,6 @@ input {
 /*オンライン、オフライン*/
 .ping-panel {
   display: flex;
-  margin-bottom: 0.2rem;
 }
 
 .online-status-indicatator {
