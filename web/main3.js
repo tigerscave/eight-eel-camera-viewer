@@ -14,19 +14,19 @@ zoomOutCameraBtn3.addEventListener('click', () => {
 
 //ビューワーのプリセット
 //保存①〜③ボタン
-const savePresetBtn1 = document.getElementById('save-angle13') // first-angle-btn
-const savePresetBtn2 = document.getElementById('save-angle23')
-const savePresetBtn3 = document.getElementById('save-angle33')
+const savePreset3Btn1 = document.getElementById('save-angle13') // first-angle-btn
+const savePreset3Btn2 = document.getElementById('save-angle23')
+const savePreset3Btn3 = document.getElementById('save-angle33')
 
-savePresetBtn1.addEventListener('click', () => {
+savePreset3Btn1.addEventListener('click', () => {
   eel.preset_request(ipAddressInput3.value, 1);
 });
 
-savePresetBtn2.addEventListener('click', () => {
+savePreset3Btn2.addEventListener('click', () => {
   eel.preset_request(ipAddressInput3.value, 2);
 });
 
-savePresetBtn3.addEventListener('click', () => {
+savePreset3Btn3.addEventListener('click', () => {
   eel.preset_request(ipAddressInput3.value, 3);
 });
 
