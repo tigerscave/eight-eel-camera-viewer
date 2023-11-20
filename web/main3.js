@@ -14,20 +14,20 @@ zoomOutCameraBtn3.addEventListener('click', () => {
 
 //ビューワーのプリセット
 //保存①〜③ボタン
-const saveAngle1Btn3 = document.getElementById('save-angle13') // first-angle-btn
-const saveAngle2Btn3 = document.getElementById('save-angle23')
-const saveAngle3Btn3 = document.getElementById('save-angle33')
+const savePreset3Btn1 = document.getElementById('save-angle13') // first-angle-btn
+const savePreset3Btn2 = document.getElementById('save-angle23')
+const savePreset3Btn3 = document.getElementById('save-angle33')
 
-saveAngle1Btn3.addEventListener('click', () => {
-  cameraViewer3.src = "http://nwcadmin:Passwd34@" + ipAddressInput3.value + "/cgi-bin/camposiset?presetset=1"
+savePreset3Btn1.addEventListener('click', () => {
+  eel.preset_request(ipAddressInput3.value, 1);
 });
 
-saveAngle2Btn3.addEventListener('click', () => {
-  cameraViewer3.src = "http://nwcadmin:Passwd34@" + ipAddressInput3.value + "/cgi-bin/camposiset?presetset=2"
+savePreset3Btn2.addEventListener('click', () => {
+  eel.preset_request(ipAddressInput3.value, 2);
 });
 
-saveAngle3Btn3.addEventListener('click', () => {
-  cameraViewer3.src = "http://nwcadmin:Passwd34@" + ipAddressInput3.value + "/cgi-bin/camposiset?presetset=3"
+savePreset3Btn3.addEventListener('click', () => {
+  eel.preset_request(ipAddressInput3.value, 3);
 });
 
 //移動①〜③ボタン
