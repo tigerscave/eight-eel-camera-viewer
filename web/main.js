@@ -98,21 +98,28 @@ const saveAngle1Btn = document.getElementById('save-angle1') // first-angle-btn
 const saveAngle2Btn = document.getElementById('save-angle2')
 const saveAngle3Btn = document.getElementById('save-angle3')
 
-eel.expose(save_request_preset1)
 saveAngle1Btn.addEventListener('click', () => {
   save_request_preset1(ipAddressInput.value);
 });
   function save_request_preset1(ipAddress){
-    eel.save_request(ipAddress);
+    eel.preset_request(ipAddress,"1");
 };
 
 saveAngle2Btn.addEventListener('click', () => {
-  cameraViewer.src = "http://nwcadmin:Passwd34@" + ipAddressInput.value + "/cgi-bin/camposiset?presetset=2"
+  save_request_preset2(ipAddressInput.value);
 });
+function save_request_preset2(ipAddress){
+  eel.preset_request(ipAddress,"2");
+};
 
 saveAngle3Btn.addEventListener('click', () => {
-  cameraViewer.src = "http://nwcadmin:Passwd34@" + ipAddressInput.value + "/cgi-bin/camposiset?presetset=3"
+  save_request_preset3(ipAddressInput.value);
 });
+function save_request_preset3(ipAddress){
+  eel.preset_request(ipAddress,"3");
+};
+
+
 
 //移動①〜③ボタン
 const moveAngle1Btn = document.getElementById("move-angle1")
