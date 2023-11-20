@@ -74,11 +74,10 @@ def ping_monitoring3():
             eel.update_ping_result3(result3)
 
 @eel.expose
-def preset_request(ip_addr,preset_no):
+def preset_request(ip_addr,preset_num):
     response = requests.get(
-         f'http://{ip_addr}/cgi-bin/camposiset?presetset={preset_no}',
+         f'http://{ip_addr}/cgi-bin/camposiset?presetset={preset_num}',
          auth=HTTPDigestAuth("nwcadmin", "Passwd34"))
 
 if __name__ == "__main__":
     eel.start("index.html", size=(2000,3500))
-
