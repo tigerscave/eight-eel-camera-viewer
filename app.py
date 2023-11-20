@@ -75,7 +75,7 @@ def ping_monitoring3():
 
 @eel.expose
 def preset_request(ip_addr,preset_no):
-    response1 = requests.get(
+    response = requests.get(
          f'http://{ip_addr}/cgi-bin/camposiset?presetset={preset_no}',
          auth=HTTPDigestAuth("nwcadmin", "Passwd34"))
 

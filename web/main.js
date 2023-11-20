@@ -99,27 +99,16 @@ const saveAngle2Btn = document.getElementById('save-angle2')
 const saveAngle3Btn = document.getElementById('save-angle3')
 
 saveAngle1Btn.addEventListener('click', () => {
-  save_request_preset1(ipAddressInput.value);
+  eel.preset_request(ipAddressInput.value, 1);
 });
-  function save_request_preset1(ipAddress){
-    eel.preset_request(ipAddress,"1");
-};
 
 saveAngle2Btn.addEventListener('click', () => {
-  save_request_preset2(ipAddressInput.value);
+  eel.preset_request(ipAddressInput.value, 2);
 });
-function save_request_preset2(ipAddress){
-  eel.preset_request(ipAddress,"2");
-};
 
 saveAngle3Btn.addEventListener('click', () => {
-  save_request_preset3(ipAddressInput.value);
+  eel.preset_request(ipAddressInput.value, 3);
 });
-function save_request_preset3(ipAddress){
-  eel.preset_request(ipAddress,"3");
-};
-
-
 
 //移動①〜③ボタン
 const moveAngle1Btn = document.getElementById("move-angle1")
