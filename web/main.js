@@ -256,6 +256,3 @@ leftSideBtn.addEventListener('click', () => {
 rightSideBtn.addEventListener('click', () => {
   cameraViewer.src = "http://" + ipAddressInput.value + "/cgi-bin/camctrl?pan=1&tilt=0&Language=0";
 });
-
-
-
