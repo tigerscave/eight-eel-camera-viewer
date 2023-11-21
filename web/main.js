@@ -47,6 +47,9 @@ sukkiriOn.addEventListener('click', () => {
   document.querySelectorAll('.sukkiri').forEach((element) => {
     element.classList.add('ui-hidden');
   });
+  document.querySelectorAll('.sukkiri-on').forEach((element)=>{
+    element.classList.remove('ui-hidden');
+  });
 });
 
 sukkiriOff.addEventListener('click', () => {
@@ -54,6 +57,9 @@ sukkiriOff.addEventListener('click', () => {
   localStorage.setItem("sukkiriMode", "false")
   document.querySelectorAll('.sukkiri').forEach((element) => {
     element.classList.remove('ui-hidden')
+  });
+  document.querySelectorAll('.sukkiri-on').forEach((element) => {
+    element.classList.add('ui-hidden')
   });
 });
 

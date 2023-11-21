@@ -56,18 +56,6 @@ body {
   font-size: 1rem;
 }
 
-.reload-text {
-  margin-top: 1.4rem;
-  margin-left: 1rem;
-  font-size: 0.8rem;
-  opacity: 0;
-  transition: opacity 300ms;
-}
-
-.appear {
-  opacity: 1;
-}
-
 /*すっきりモード 切り替え*/
 .change-ui-on-btn,
 .change-ui-off-btn {
@@ -84,7 +72,16 @@ body {
 
 .ui-hidden {
   display: none;
-  margin-top: 0;
+}
+
+.sukkiri {
+  margin-left:3px;
+}
+
+.sukkiri-on {
+  margin-bottom: 7px;
+  margin-left: 5px;
+  margin-top: 4px;
 }
 
 /*拡大・縮小*/
@@ -204,7 +201,9 @@ input {
   display: flex;
 }
 
-.online-status-indicatator {
+.online-status-indicatators,
+.online-status-indicatators2,
+.online-status-indicatators3 {
   width: 16px;
   height: 16px;
   background-color: lightgray;
@@ -222,14 +221,15 @@ p {
 
 /*カメラビューワー*/
 iframe {
-  margin-left: 1rem;
+  margin-left: 0.4rem;
   border: 0;
 }
 
 /*サイドボタン*/
 .ifr-resize-btn {
-  margin-left: 5px;
-  margin-bottom: 35px;
+  margin-left: 3px;
+  margin-top: 0.5rem;
+  margin-bottom: 30px;
   cursor: pointer;
   background: white;
   color: #000000;
