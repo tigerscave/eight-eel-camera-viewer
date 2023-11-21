@@ -71,7 +71,7 @@ body {
 }
 
 .ui-hidden {
-  display: none;
+  display: none !important;
 }
 
 .sukkiri {
@@ -243,7 +243,9 @@ iframe {
   flex-flow: column;
 }
 
-.iframe-label {
+.iframe-label1,
+.iframe-label2,
+.iframe-label3 {
   margin: 0;
   display: flex;
   justify-content: flex-start;
