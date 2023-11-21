@@ -47,6 +47,28 @@ sukkiriOn.addEventListener('click', () => {
   document.querySelectorAll('.sukkiri').forEach((element) => {
     element.classList.add('ui-hidden');
   });
+  document.querySelectorAll('.sukkiri-on').forEach((element)=>{
+    element.classList.remove('ui-hidden');
+  });
+  //すっきりモードがONのときに、IPアドレスが未入力の場合、iframeを非表示にする。
+  let ipAddressInput = document.getElementById("ip-address-input");
+  let ipAddressInput2 = document.getElementById("ip-address-input2");
+  let ipAddressInput3 = document.getElementById("ip-address-input3");
+  if(ipAddressInput.value === "") {
+    document.querySelectorAll('.iframe-label1').forEach((element) => {
+      element.classList.add('ui-hidden');
+    });
+  }
+  if(ipAddressInput2.value === "") {
+    document.querySelectorAll('.iframe-label2').forEach((element) => {
+      element.classList.add('ui-hidden');
+    });
+  }
+  if(ipAddressInput3.value === "") {
+    document.querySelectorAll('.iframe-label3').forEach((element) => {
+      element.classList.add('ui-hidden');
+    });
+  }
 });
 
 sukkiriOff.addEventListener('click', () => {
@@ -54,6 +76,19 @@ sukkiriOff.addEventListener('click', () => {
   localStorage.setItem("sukkiriMode", "false")
   document.querySelectorAll('.sukkiri').forEach((element) => {
     element.classList.remove('ui-hidden')
+  });
+  document.querySelectorAll('.sukkiri-on').forEach((element) => {
+    element.classList.add('ui-hidden')
+  });
+    //すっきりモードがOFFのときに、iframeを表示する。
+  document.querySelectorAll('.iframe-label1').forEach((element) => {
+    element.classList.remove('ui-hidden');
+  });
+  document.querySelectorAll('.iframe-label2').forEach((element) => {
+    element.classList.remove('ui-hidden');
+  });
+  document.querySelectorAll('.iframe-label3').forEach((element) => {
+    element.classList.remove('ui-hidden');
   });
 });
 

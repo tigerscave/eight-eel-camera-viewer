@@ -2,7 +2,7 @@
 const ipAddressInput3 = document.getElementById("ip-address-input3")
 const connectIpAddressBtn3 = document.getElementById("connect-ip-address-btn3")
 const cameraViewer3 = document.getElementById("camera-viewer3")
-const onlineStatusIndicator3 = document.getElementById("online-status-indicatator3")
+const onlineStatusIndicators3 = document.querySelectorAll(".online-status-indicatators3")
 const onOfflineText3 = document.getElementById("on-offline-text3")
 
 //IPアドレス編集モード⇔読み込みモード切り替え関数のまとめ
@@ -23,9 +23,10 @@ function importIpAddressMode3() {
 //オフラインイベント関数のまとめ
 function displayOfflineEvent3() {
   onOfflineText3.innerText = "オフライン （通信データなし）"
-  onlineStatusIndicator3.style.backgroundColor = "lightgray"
+  onlineStatusIndicators3.forEach(indicator => {
+    indicator.style.backgroundColor = "lightgray"
+  });
 };
-
 
 eel.expose(update_ping_result3);
 function update_ping_result3(response_time3) {
@@ -33,7 +34,9 @@ function update_ping_result3(response_time3) {
   if (match3 && match3.length >= 2) {
     response_time3 = match3[1];
     onOfflineText3.textContent = `オンライン（通信時間:${response_time3}ミリ秒）`
-    onlineStatusIndicator3.style.backgroundColor = "lightgreen";
+    onlineStatusIndicators3.forEach(indicator => {
+      indicator.style.backgroundColor = "lightgreen";
+    });
   } else {
     displayOfflineEvent3()
   }

@@ -96,9 +96,9 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 //ビューワーサイドのボタン
-const angle1SideBtn3 = document.getElementById("side13")
-const angle2SideBtn3 = document.getElementById("side23")
-const angle3SideBtn3 = document.getElementById("side33")
+const angle1SideBtn3 = document.getElementById("side1-3")
+const angle2SideBtn3 = document.getElementById("side2-3")
+const angle3SideBtn3 = document.getElementById("side3-3")
 const zoomInSideBtn3 = document.getElementById("side+3")
 const zoomOutSideBtn3 = document.getElementById("side-3")
 const upSideBtn3 = document.getElementById("side-up3")
