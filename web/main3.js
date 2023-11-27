@@ -95,6 +95,19 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 
+//明るさ調節のボタン
+const brighterBtn3 = document.getElementById("light-btn3")
+const darkenBtn3 = document.getElementById("dark-btn3")
+
+brighterBtn3.addEventListener('click', () => {
+  cameraViewer.src = "http://" + ipAddressInput3.value + "/cgi-bin/camctrl?bright=up";
+});
+
+darkenBtn3.addEventListener('click', () => {
+  cameraViewer.src = "http://" + ipAddressInput3.value + "/cgi-bin/camctrl?bright=down";
+});
+
+
 //ビューワーサイドのボタン
 const angle1SideBtn3 = document.getElementById("side1-3")
 const angle2SideBtn3 = document.getElementById("side2-3")
@@ -105,6 +118,8 @@ const upSideBtn3 = document.getElementById("side-up3")
 const downSideBtn3 = document.getElementById("side-down3")
 const leftSideBtn3 = document.getElementById("side-left3")
 const rightSideBtn3 = document.getElementById("side-right3")
+const brighterSideBtn3 = document.getElementById("side-light3")
+const darkenSideBtn3 = document.getElementById("side-dark3")
 
 angle1SideBtn3.addEventListener('click', () => {
   cameraViewer3.src = "http://" + ipAddressInput3.value + "/cgi-bin/camctrl?preset=1";
@@ -140,4 +155,12 @@ leftSideBtn3.addEventListener('click', () => {
 
 rightSideBtn3.addEventListener('click', () => {
   cameraViewer3.src = "http://" + ipAddressInput3.value + "/cgi-bin/camctrl?pan=1&tilt=0&Language=0";
+});
+
+brighterSideBtn3.addEventListener('click', () => {
+  cameraViewer.src = "http://" + ipAddressInput3.value + "/cgi-bin/camctrl?bright=up";
+});
+
+darkenSideBtn3.addEventListener('click', ()=> {
+  cameraViewer.src = "http://" + ipAddressInput3.value + "/cgi-bin/camctrl?bright=down";
 });
