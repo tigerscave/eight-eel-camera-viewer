@@ -1,5 +1,27 @@
 'use strict'
 
+/*
+  ↓↓↓ TawaRemo Viewer全体に関係するコード（main.jsのみ記述) ↓↓↓
+*/
+//スクロール位置の保存
+let positionY;
+const scrollPositionKey = "scroll-position";
+
+function checkScrollPosition() {
+  positionY = window.pageYOffset;
+  localStorage.setItem(scrollPositionKey, positionY)
+}
+
+window.addEventListener("load", function() {
+  positionY = localStorage.getItem(scrollPositionKey);
+  //前回の保存データがあれば、スクロールする。
+  if(positionY !== null) {
+    scrollTo(0, positionY);
+  }
+  //スクロール時のイベント
+  window.addEventListener("scroll", checkScrollPosition, false);
+});
+
 //更新ボタン
 const reloadBtn = document.getElementById("reload-btn")
 const reloadText = document.getElementById("reload-text")
@@ -115,6 +137,10 @@ function loadUIState() {
 }
 loadUIState();
 
+/*
+  ↑↑↑ TawaRemo Viewer全体に関係するコード（main.jsのみ記述） ↑↑↑
+*/
+
 //ビューワーの拡大縮小ボタン
 const zoomInCameraBtn = document.getElementById("zoom-in-camera-btn")
 const zoomOutCameraBtn = document.getElementById("zoom-out-camera-btn")
@@ -210,6 +236,18 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 
+//明るさ調節のボタン
+const brighterBtn = document.getElementById("light-btn")
+const darkenBtn = document.getElementById("dark-btn")
+
+brighterBtn.addEventListener('click', () => {
+  cameraViewer.src = "http://" + ipAddressInput.value + "/cgi-bin/camctrl?bright=up";
+});
+
+darkenBtn.addEventListener('click', () => {
+  cameraViewer.src = "http://" + ipAddressInput.value + "/cgi-bin/camctrl?bright=down";
+});
+
 //ビューワーサイドのボタン
 const angle1SideBtn = document.getElementById("side1")
 const angle2SideBtn = document.getElementById("side2")
@@ -220,6 +258,8 @@ const upSideBtn = document.getElementById("side-up")
 const downSideBtn = document.getElementById("side-down")
 const leftSideBtn = document.getElementById("side-left")
 const rightSideBtn = document.getElementById("side-right")
+const brighterSideBtn = document.getElementById("side-light")
+const darkenSideBtn = document.getElementById("side-dark")
 
 angle1SideBtn.addEventListener('click', () => {
   cameraViewer.src = "http://" + ipAddressInput.value + "/cgi-bin/camctrl?preset=1";
@@ -255,4 +295,12 @@ leftSideBtn.addEventListener('click', () => {
 
 rightSideBtn.addEventListener('click', () => {
   cameraViewer.src = "http://" + ipAddressInput.value + "/cgi-bin/camctrl?pan=1&tilt=0&Language=0";
+});
+
+brighterSideBtn.addEventListener('click', () => {
+  cameraViewer.src = "http://" + ipAddressInput.value + "/cgi-bin/camctrl?bright=up";
+});
+
+darkenSideBtn.addEventListener('click', ()=> {
+  cameraViewer.src = "http://" + ipAddressInput.value + "/cgi-bin/camctrl?bright=down";
 });

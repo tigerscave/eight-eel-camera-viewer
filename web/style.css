@@ -196,6 +196,21 @@ input {
   color: #144998;
 }
 
+/*明るさ調整*/
+.light-btn,.dark-btn {
+  width: 2.1rem;
+  height: 1.6rem;
+  cursor: pointer;
+  justify-content: center;
+  align-items: center;
+  background: white;
+  color: black;
+  border-radius: 6%;
+  text-decoration: none;
+  border: outset 0.01px black;
+  margin-top: 1.25rem;
+}
+
 /*オンライン、オフライン*/
 .ping-panel {
   display: flex;
